@@ -1,0 +1,46 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+const int N = 100005;
+int sum[N];
+int one_sum[N];
+int main(){
+int n,k;
+cin>>n>>k;
+vector<int>v1(n);
+vector<int>v2(n);
+for(int i=0;i<n;i++)
+cin>>v1[i];
+for(int i=0;i<n;i++)
+cin>>v2[i];
+////////////
+for(int i=1;i<=n;i++){
+	sum[i]=v1[i-1]+sum[i-1];
+	if(v2[i-1]==1)
+	one_sum[i]=v1[i-1]+one_sum[i-1];
+	else
+	one_sum[i]=one_sum[i-1];
+}
+int c=0;
+ll ma=0;
+while(c+k-1<n){
+	ll su;
+
+ su=(sum[c+k]-sum[c])+(one_sum[n]-(one_sum[c+k]-one_sum[c]));
+
+
+ma=max(ma,su);
+c++;
+}
+cout<<ma<<"\n";
+}
+C++
