@@ -1,0 +1,32 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+const int N = 100005;
+int sum[N];
+int main(){
+string s;
+cin>>s;
+for(int i=1;i<s.size();i++){
+	if(s[i-1]==s[i])
+	sum[i]=sum[i-1]+1;
+	else
+	sum[i]=sum[i-1];
+}
+
+int t;
+cin>>t;
+while(t--){
+	int x,y;
+	cin>>x>>y;
+cout<<sum[y-1]-sum[x-1]<<"\n";
+}
+}
