@@ -1,0 +1,59 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+const int N = 200005;
+
+//ll ans1[N];
+//ll ans2[N];
+int main() {
+	int n;
+	cin >> n;
+	map<int, int> s1;
+	map<int, int> s2;
+	int c1 = 1, c2 = 1;
+	while (n--) {
+		char ch;
+		cin >> ch;
+		if (ch == '?') {
+			int x;
+			cin >> x;
+			if (s1.find(x) != s1.end()) {
+				int v = (s1.lower_bound(x))->second;
+				int r = c1 - v;
+			//	cout<<"r ="<<r<<" ";
+				int l = c2 + v - 1;
+			//	cout<<"l "<<l<<"\n";
+				cout << min(r-1, l-1)<<"\n";
+			}
+			else {
+				int v = (s2.lower_bound(x))->second;
+				int r = c1 + v - 1;
+			//	cout<<"r ="<<r<<" ";
+				int l = c2 - v;
+			//		cout<<"l "<<l<<"\n";
+				cout << min(r-1, l-1)<<"\n";
+			}
+		}
+		if (ch == 'L') {
+			int x;
+			cin >> x;
+			s2.insert({ x,c2 });
+			c2++;
+		}
+		else if (ch == 'R') {
+			int x;
+			cin >> x;
+			s1.insert({ x,c1 });
+			c1++;
+		}
+	}
+}
