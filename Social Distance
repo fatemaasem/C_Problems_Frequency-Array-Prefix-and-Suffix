@@ -1,0 +1,51 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+const int N = 100005;
+int a[N];
+int ans[N];
+int main(){
+	int t;
+	cin >>t;
+	while (t--) {
+		int n, k;
+		cin >> n >> k;
+		string s;
+		cin >> s;
+		set<int>se;
+		int sum = 0;
+		for (int i = 0; i < n; i++) {
+			if (s[i] == '1')
+				se.insert(i);
+		}
+		for (int i = 0; i < n; i++) {
+			if (s[i] == '0') {
+				auto io = se.upper_bound(i);
+				if (io != se.end()) {
+					if ((*io) - i <= k)
+						continue;
+				}
+
+				if (io != se.begin()) {
+					io--;
+					if (i - (*io) <= k) { continue;
+					}
+				}
+			//	cout << s[i] <<" " << i << "\n";
+				sum++;
+				se.insert(i);
+			}
+		}
+		cout << sum << "\n";
+	}
+}
+C++
