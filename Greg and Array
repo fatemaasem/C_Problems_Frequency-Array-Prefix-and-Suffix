@@ -1,0 +1,48 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+const int N = 100005;
+ll a[N],aa[N];
+int ans[N],l[N],r[N],d[N];
+int main(){
+	int n, m,k;
+	cin >> n >> m >> k;
+	
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+
+	
+	for (int i = 1; i <= m; i++) {
+		cin>>l[i]>>r[i]>>d[i];
+	}
+	for (int i = 1; i <= k; i++) {
+		int x, y;
+		cin >> x >>y;
+		ans[x]++ ;
+		ans[y+1 ]--;
+}
+///////////////////////
+for (int k = 1; k <= m; k++) {
+		ans[k] += ans[k - 1];
+	}
+	
+	//////////////////////////
+	for(int i=1;i<=m;i++){
+		aa[l[i]]+=(1ll*ans[i]*d[i]);
+		aa[r[i]+1]-=(1ll*ans[i]*d[i]);
+	}
+	for(int i=1;i<=n;i++){
+		aa[i]+=aa[i-1];
+			cout<<a[i]+aa[i]<<" ";
+	}
+
+}
