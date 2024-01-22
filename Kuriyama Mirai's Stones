@@ -1,0 +1,49 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long 
+using namespace std;
+const int N = 100005;
+ll ans1[N];
+ll ans2[N];
+int main(){
+	int n;
+	cin >> n;
+	vector<ll>v(n);
+	for (int i = 1; i <= n; i++) {
+		cin >> v[i-1];
+		ans1[i] = v[i-1] + ans1[i - 1];
+		}
+	sort(v.begin(), v.end());
+	for (int i = 1; i <= n; i++)
+	{
+		ans2[i] = ans2[i - 1] + v[i - 1];
+	}
+	/*
+	for (int i = 1; i <= n; i++)
+		cout << ans1[i] << " ";
+	cout << "\n";
+	for (int i = 1; i <= n; i++)
+		cout << ans2[i] << " ";
+	*/
+	int m;
+	cin >>m;
+	while (m--) {
+		int type,l, r;
+		cin >>type>> l >> r;
+		if (type == 1)
+			cout << ans1[r] - ans1[l - 1] << "\n";
+		else 
+			cout << ans2[r] - ans2[l - 1] << "\n";
+
+	}
+
+}
+C++
