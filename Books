@@ -1,0 +1,49 @@
+#include <iostream>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include<cstdio>
+#include<vector>
+#include<set>
+#include<map>
+#include<string>
+#include<cmath>
+#define ll long long
+
+using namespace std;
+const int N = 200005;
+
+int ans[N];
+//ll ans2[N];
+int main() {
+	int n;
+	cin >> n;
+	ll t;
+	cin >> t;
+	vector<int>v(n);
+
+	
+	int p = 0;
+	for (int i = 0; i < n; i++) {
+		cin >> v[i];
+	}
+	int p1 = 0;
+	int ma = 0;
+	for (int i = 1; i <= n; i++) {
+		ans[i] = v[i - 1] + ans[i - 1];
+		if (ans[i]-ans[p1] == t) {
+			ma = (max(ma, (i -  p1)));
+			p1++;
+		}
+		if (ans[i]-ans[p1] > t) {
+			ma = max(ma, i-1 - p1);
+			p1++;
+		}
+		if (i == n && ans[i] - ans[p1] < t) {
+			ma = max(ma, i - p1);
+		}
+		//cout<<ma<<" ";
+	}
+	cout<<ma<<"\n";
+}
+C++
